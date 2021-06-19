@@ -10,7 +10,7 @@ const connection = mysql.createConnection({
     port: 3306,
     user: "root",
     password: "password",
-    database: "tracker_db"
+    database: "employee_trackerDB"
 });
 
 connection.connect (function (err){
@@ -34,6 +34,41 @@ function appStart(){
             "Exit Program"
         ]
     })
+    .then(function (answer) {
+        switch (answer.startMenu) {
+            case "View All Departments":
+            viewDepts();
+            break;
+
+            case "View All Roles":
+            viewRoles();
+            break;
+
+            case "View All Employees":
+            viewEmp();
+            break;
+
+            case "Add Department":
+            addDept();
+            break;
+
+            case "Add Role":
+            addRole();
+            break;
+
+            case "Add Employee":
+            addEmp();
+            break;
+
+            case "Update Employee Role":
+            updateEmpRole();
+            break;
+
+            case "Exit Program":
+            connection.end();
+            break;
+        }
+    });
 };
 
 function viewDepts(){
