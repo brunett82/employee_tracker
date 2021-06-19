@@ -58,3 +58,56 @@ function viewEmp(){
         start();
     })
 };
+
+function addDept(){
+    inquirer.prompt({
+        type: "input",
+        message: "Enter the new department name.",
+        name: "newDept"
+    })
+    .then(function (res){
+        const newDept = res.newDept;
+        const sqlQuery = `INSERT INTO department (department_name) VALUES ("${newDept})`;
+        connection.query(sqlQuery, function (err, res){
+            if (err) {
+                throw err;
+            }
+            console.table(res);
+            start();
+        })
+    })
+};
+
+function addRole(){
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "Enter Employee Title",
+            name: "empTitle"
+        },
+        {
+            type: "input",
+            message: "Enter Employee Department ID",
+            name: "empDept"
+        },
+        {
+            type: "input",
+            message: "Enter Employee Salary",
+            name: "empSalary"
+        }
+    ])
+    .then(function (res){
+        const title = res.empTitle;
+        const deptId = res.empDept;
+        const salary = res.empSalary;
+        const sqlQuery = `INSERT INTO role (title, department_id, salary) VALUES ("${title}", "${deptId}", "${salary}")`;
+        connection.query(sqlQuery, function (err, res){
+            if (err){
+                throw err;
+            }
+            console.table(res);
+            start();
+        })
+    })
+};
+
