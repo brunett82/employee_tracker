@@ -1,0 +1,26 @@
+{
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "employee_tracker",
+  "description": "",
+  "version": "1.0.0",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunett82/employee_tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brunett82/employee_tracker/issues"
+  },
+  "homepage": "https://github.com/brunett82/employee_tracker#readme",
+  "dependencies": {
+    "inquirer": "^8.1.1",
+    "mysql": "^2.18.1"
+  }
+}
