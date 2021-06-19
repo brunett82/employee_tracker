@@ -72,24 +72,24 @@ function appStart(){
 };
 
 function viewDepts(){
-    const sqlQuery = "SELECT * FROM dept"
-    connection.query(sqlQuery, function (err, res){
+    const query = "SELECT * FROM dept"
+    connection.query(query, function (err, res){
         console.table(res);
         appStart();
     })
 };
 
 function viewRoles(){
-    const sqlQuery = "SELECT * FROM role"
-    connection.query(sqlQuery, function (err, res){
+    const query = "SELECT * FROM role"
+    connection.query(query, function (err, res){
         console.table(res);
         appStart();
     })
 };
 
 function viewEmp(){
-    const sqlQuery = "SELECT employee.id, employee.first_name, employee.last_name, role.title, department.department_name AS department, role.salary FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department on role.department_id = department.id"
-    connection.query(sqlQuery, function (err, res){
+    const query = "SELECT employee.id, employee.first_name, employee.last_name, role.title, department.department_name AS department, role.salary FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department on role.department_id = department.id"
+    connection.query(query, function (err, res){
         console.table(res);
         appStart();
     })
@@ -103,8 +103,8 @@ function addDept(){
     })
     .then(function (res){
         const newDept = res.newDept;
-        const sqlQuery = `INSERT INTO department (department_name) VALUES ("${newDept})`;
-        connection.query(sqlQuery, function (err, res){
+        const query = `INSERT INTO department (department_name) VALUES ("${newDept}")`;
+        connection.query(query, function (err, res){
             if (err) {
                 throw err;
             }
@@ -136,8 +136,8 @@ function addRole(){
         const title = res.empTitle;
         const deptId = res.empDept;
         const salary = res.empSalary;
-        const sqlQuery = `INSERT INTO role (title, department_id, salary) VALUES ("${title}", "${deptId}", "${salary}")`;
-        connection.query(sqlQuery, function (err, res){
+        const query = `INSERT INTO role (title, department_id, salary) VALUES ("${title}", "${deptId}", "${salary}")`;
+        connection.query(query, function (err, res){
             if (err){
                 throw err;
             }
@@ -175,8 +175,8 @@ function addEmp(){
         const lastName = res.lastName;
         const empID = res.empID;
         const manID = res.manID;
-        const sqlQuery = `INSERT INTO employee (first_name, last_name, employee_id, manager_id) VALUES ("${firstName}", "${lastName}", "${empID}", "${manID}")`;
-        connection.query(sqlQuery, function (err, res){
+        const query = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("${firstName}", "${lastName}", "${empID}", "${manID}")`;
+        connection.query(query, function (err, res){
             if (err){
                 throw err;
             }
@@ -202,8 +202,8 @@ function updateEmpRole(){
     .then(function(res){
         const updateID = res.updateID;
         const newID = res.newID;
-        const sqlQuery = `UPDATE employee SET role_id = "${newID}" WHERE id = "${updateID}"`;
-        connection.query(sqlQuery, function (err, res){
+        const query = `UPDATE employee SET role_id = "${newID}" WHERE id = "${updateID}"`;
+        connection.query(query, function (err, res){
             if (err) {
                 throw err;
             }
