@@ -72,7 +72,7 @@ function appStart(){
 };
 
 function viewDepts(){
-    const query = "SELECT * FROM dept"
+    const query = "SELECT * FROM department"
     connection.query(query, function (err, res){
         console.table(res);
         appStart();
